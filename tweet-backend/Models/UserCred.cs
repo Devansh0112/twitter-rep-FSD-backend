@@ -11,7 +11,7 @@ namespace tweet_backend.Models
     {
         [BsonElement("username")]
         [JsonPropertyName("username")]
-        public string Username;
+        public string Username { get; set; }
         [BsonElement("password")]
         [JsonPropertyName("password")]
         public string Password { get; set; }

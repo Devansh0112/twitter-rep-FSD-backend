@@ -25,7 +25,13 @@ namespace tweet_backend.Services
 
         public async Task<bool> SignInUserAsync(UserCred userCred)
         {
+            FilterDefinition<Users> filterUsername = Builders<Users>.Filter.Eq("username", userCred.Username);
+            FilterDefinition<Users> filterPassword = Builders<Users>.Filter.Eq("password", userCred.Password);
+            FilterDefinition<Users> combineFilters = Builders<Users>.Filter.And(filterUsername, filterPassword);
 
+            var result = await _userCollection.Find(combineFilters).FirstOrDefaultAsync();
+
+            return result != null ? true : false;
         }
         //public async Task CreateAsync(Users user) { }
         //public async Task AddToPlaylistAsync(string id, string movieId) { }

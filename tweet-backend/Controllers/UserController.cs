@@ -23,7 +23,7 @@ namespace tweet_backend.Controllers
             return await _mongoDBService.GetAsync();
         }
 
-        [HttpPost]
+        [HttpPost("SignIn")]
         public async Task<bool> SignInUser([FromBody] UserCred userCred)
         {
             return await _mongoDBService.SignInUserAsync(userCred);
